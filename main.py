@@ -98,7 +98,7 @@ def count_primes_less_than(n: int) -> int:
 
 
 if __name__ == '__main__':
-    limit = 100
+    limit = 1_00
     list1 = []
     test = [3, 7, 5, 4, 8, 4, 9]
     list2 = []
@@ -111,6 +111,7 @@ if __name__ == '__main__':
     my_list_str2 = [str(i) for i in list2]
     print(count_primes_less_than(limit))
     print(seperator.join(my_list_str))
+    # check = (3 in test)
     print(len(list2))
     print(seperator.join(my_list_str2))
     test.sort()
