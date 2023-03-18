@@ -9,21 +9,16 @@ query = """
   }
 }
 """
-
-# Define the GraphQL endpoint URL
 url = 'https://api.example.com/graphql'
 
-# Define the request headers
 headers = {'Content-Type': 'application/json'}
 
-# Define the request payload as a JSON object
+# JSON payload
 payload = {'query': query}
 
-# Send the GET request with the query payload and headers
+# GET request with the query payload and headers
 response = requests.get(url, headers=headers, params=payload)
 
-# Extract the JSON response from the request
 json_response = response.json()
 
-# Print the response data
 print(json_response['data'])

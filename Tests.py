@@ -1,6 +1,6 @@
 import unittest
 
-from Testing.main import count_primes_less_than, seiveofEratosthenes
+from Testing.main import count_primes_less_than, sieveofEratosthenes
 
 
 class Cases(unittest.TestCase):
@@ -19,16 +19,16 @@ class Cases(unittest.TestCase):
         # all tests passed
 
     def test_my_method5(self):
-        self.assertEqual(seiveofEratosthenes(34), 11)
+        self.assertEqual(sieveofEratosthenes(34), 11)
 
     def test_my_method6(self):
-        self.assertEqual(seiveofEratosthenes(69), 19)
+        self.assertEqual(sieveofEratosthenes(69), 19)
 
     def test_my_method7(self):
-        self.assertEqual(seiveofEratosthenes(420), 81)
+        self.assertEqual(sieveofEratosthenes(420), 81)
 
     def test_my_method8(self):
-        self.assertEqual(seiveofEratosthenes(666), 121)
+        self.assertEqual(sieveofEratosthenes(666), 121)
     # test.it("Basic tests")
 
 

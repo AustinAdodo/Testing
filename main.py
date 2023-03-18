@@ -4,15 +4,15 @@ from math import pow, ceil
 # Press Shift+F10 to execute it or replace it with your code.
 # Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
 
-def spiralize(size=[[int]]):
+def spiralize(size=[[]]):
     # even_numbers = [x for x in numbers if x % 2 == 0]
     # even_numbers = list(filter(lambda x: x % 2 == 0, numbers))
-    spiral = [[]]
+    spiral = [[0]]
     return spiral
 
 
 # Eratosthenes
-def seiveofEratosthenes(n: int) -> int:
+def sieveofEratosthenes(n: int) -> int:
     sieve = [True for i in range(n + 1)]
     primes = []
     sieve[1] = False
@@ -41,14 +41,66 @@ def isprime(n: int) -> bool:
     return result
 
 
+def closest_temperature(n: [int]) -> int:
+    result: int
+    general = []
+    x = []
+    try:
+        n = int(input())
+    except ValueError:
+        print(0)
+    except EOFError:
+        print(0)
+    except TypeError:
+        print(0)
+        # the number of temperatures to analyse
+    try:
+        x = input().split()
+    except ValueError:
+        print(0)
+    except EOFError:
+        print(0)
+    except TypeError:
+        print(0)
+    finally:
+        positives = []
+        negatives = []
+        for i in x:
+            # t: a temperature expressed as an integer ranging from -273 to 5526
+            t = int(i)
+            general.append(t)
+            if t > 0:
+                positives.append(t)
+            if t < 0:
+                negatives.append(t)
+        if len(positives) == 0 and len(negatives) == 0:
+            print(0)
+            exit()
+        positives.sort(reverse=True)
+        negatives.sort()
+        if all(num < 0 for num in general):
+            print(negatives[-1])
+            exit()
+        if all(num > 0 for num in general):
+            print(positives[-1])
+            exit()
+        result = (positives[-1] if positives[-1] - 0 == 0 - negatives[0] else
+                  min(positives[-1] - 0, 0 - negatives[0]) if len(positives) > 0 and len(
+                      negatives) > 0 else
+                  0
+                  )
+    return result
+
+
 def count_primes_less_than(n: int) -> int:
-    result = seiveofEratosthenes(n)
+    result = sieveofEratosthenes(n)
     return result
 
 
 if __name__ == '__main__':
     limit = 100
     list1 = []
+    test = [3, 7, 5, 4, 8, 4, 9]
     list2 = []
     seperator = ", "
 
@@ -61,6 +113,9 @@ if __name__ == '__main__':
     print(seperator.join(my_list_str))
     print(len(list2))
     print(seperator.join(my_list_str2))
+    test.sort()
+    print(test)
+
     # if 'name' in my_dict:
     # print('The dictionary contains the key "name"')
     # string = "the quick brown fox jumps over the lazy dog"
