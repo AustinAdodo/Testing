@@ -1,4 +1,14 @@
+from re import search
+
 import requests
+
+
+def hackerrankInString(s):
+    target_match = r'h\w*a\w*c\w*k\w*e\w*r\w*r\w*a\w*n\w*k'
+    match = search(target_match, s)
+    result = 'YES' if match else 'NO'
+    return result
+
 
 # Define the GraphQL query as a string
 query = """

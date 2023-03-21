@@ -4,7 +4,7 @@ from math import pow, ceil
 # Press Shift+F10 to execute it or replace it with your code.
 # Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
 
-def spiralize(size=[[]]):
+def spiralize(size=[[0]]):
     # even_numbers = [x for x in numbers if x % 2 == 0]
     # even_numbers = list(filter(lambda x: x % 2 == 0, numbers))
     spiral = [[0]]
@@ -41,55 +41,24 @@ def isprime(n: int) -> bool:
     return result
 
 
-def closest_temperature(n: [int]) -> int:
-    result: int
-    general = []
-    x = []
-    try:
-        n = int(input())
-    except ValueError:
-        print(0)
-    except EOFError:
-        print(0)
-    except TypeError:
-        print(0)
-        # the number of temperatures to analyse
-    try:
-        x = input().split()
-    except ValueError:
-        print(0)
-    except EOFError:
-        print(0)
-    except TypeError:
-        print(0)
-    finally:
-        positives = []
-        negatives = []
-        for i in x:
-            # t: a temperature expressed as an integer ranging from -273 to 5526
-            t = int(i)
-            general.append(t)
-            if t > 0:
-                positives.append(t)
-            if t < 0:
-                negatives.append(t)
-        if len(positives) == 0 and len(negatives) == 0:
-            print(0)
-            exit()
-        positives.sort(reverse=True)
-        negatives.sort()
-        if all(num < 0 for num in general):
-            print(negatives[-1])
-            exit()
-        if all(num > 0 for num in general):
-            print(positives[-1])
-            exit()
-        result = (positives[-1] if positives[-1] - 0 == 0 - negatives[0] else
-                  min(positives[-1] - 0, 0 - negatives[0]) if len(positives) > 0 and len(
-                      negatives) > 0 else
-                  0
-                  )
-    return result
+def closest_temperature():
+    n = int(input())  # the number of temperatures to analyse
+    temps = input()  # the n temperatures expressed as integers ranging from -273 to 5526
+    result = ''
+
+    if len(temps) == 0:
+        print("0")
+    else:
+        temps_split = temps.split()
+        result = temps_split[0]
+
+        for temp in temps_split:
+            if abs(int(temp)) < abs(int(result)):
+                result = temp
+            elif abs(int(temp)) == abs(int(result)):
+                result = max(int(temp), int(result))
+
+    print(result)
 
 
 def count_primes_less_than(n: int) -> int:
@@ -100,7 +69,7 @@ def count_primes_less_than(n: int) -> int:
 if __name__ == '__main__':
     limit = 1_00
     list1 = []
-    test = [3, 7, 5, 4, 8, 4, 9]
+    test = [3]
     list2 = []
     seperator = ", "
 
@@ -114,7 +83,7 @@ if __name__ == '__main__':
     # check = (3 in test)
     print(len(list2))
     print(seperator.join(my_list_str2))
-    test.sort()
+    test.sort(reverse=True)
     print(test)
 
     # if 'name' in my_dict:
