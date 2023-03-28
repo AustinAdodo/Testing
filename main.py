@@ -1,9 +1,6 @@
 from math import pow, ceil
 
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
-
 def spiralize(size=[[0]]):
     # even_numbers = [x for x in numbers if x % 2 == 0]
     # even_numbers = list(filter(lambda x: x % 2 == 0, numbers))
