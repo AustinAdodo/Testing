@@ -10,7 +10,7 @@ def hackerrankInString(s):
     return result
 
 
-# Define the GraphQL query as a string
+# GraphQL query as a string
 query = """
 {
   user(id: 1) {
@@ -19,16 +19,11 @@ query = """
   }
 }
 """
-url = 'https://api.example.com/graphql'
-
-headers = {'Content-Type': 'application/json'}
+url, headers = 'https://api.example.com/graphql', {'Content-Type': 'application/json'}
 
 # JSON payload
 payload = {'query': query}
 
-# GET request with the query payload and headers
-response = requests.get(url, headers=headers, params=payload)
-
-json_response = response.json()
-
+# GET request
+response, json_response = requests.get(url, headers=headers, params=payload), response.json()
 print(json_response['data'])

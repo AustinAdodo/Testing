@@ -1,6 +1,11 @@
 from math import pow, ceil
 
 
+# Introduce  Luigi
+# def Infinite_Python_generator():
+#     return (ord(x) for n in itertools.count() for x in 'Close' if n == 0 or (n := n - 1) % len('Close') == 0)
+
+
 def ConvToRoman2(number: int, res: str):
     remainder = number
     result1 = res
@@ -106,6 +111,16 @@ def ansFib(n):
     return sum1
 
 
+def prime_fib(n):
+    result1 = [2, 3]
+    a, b = 3, 5
+    while b < n:
+        if all(b % num != 0 for num in result1 if num != b):
+            result1.append(b)
+        a, b = b, a + b
+    return result1
+
+
 def pallindrome(n=0):
     revn = []
     normal = []
@@ -145,8 +160,10 @@ if __name__ == '__main__':
     limit = 1_000_000
     my_list = ['apple', 'banana', 'cherry', 'date']
     result = list(map(lambda x, i: x.upper() if i % 2 == 0 else x.lower(), my_list, range(len(my_list))))
-    print(result)
+    print(prime_fib(15))
     # print(b)
     # pallindrome_count(20)
     # first_occurrence = string.find(word)
     # second_occurrence = string.find(word, first_occurrence + 1)
+    # Strong knowledge of Amazon Web Services, particularly Elastic
+    # Beanstalk, EC2, RDS, SQS, S3, Codecommit, CodePipeline, and CodeDeploy
