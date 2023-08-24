@@ -2,6 +2,7 @@
 # Beanstalk, EC2, RDS, SQS, S3, Codecommit, CodePipeline, and CodeDeploy
 from collections import OrderedDict
 
+
 def do_something(skit, log, *low, gos=None, **pois):
     # gos is a KeyWord parameter
     pass
@@ -43,7 +44,6 @@ def count_change(amount, coins: [int]):
             # total count
             table[i][j] = x + y
     return table[amount][n - 1]
-
 
 
 def has_duplicates_in_second_column(two_d_list):
@@ -140,6 +140,7 @@ def reduce_directions(directions: list[str]) -> list[str]:
     my_list_without_duplicates = list(my_ordered_dict.keys())
     return my_list_without_duplicates if len(my_list_without_duplicates) > 0 else []
 
+
 def trap(height: list[int]) -> int:
     result = 0
     temp = 0
@@ -206,13 +207,15 @@ def rotate(s1, s2):
     return False
 
 
+class ModScope:
+    def __init__(self, num):
+        self.num = num
+
+    def __mod__(self, other):
+        return self.num % other.num
+
+
 if __name__ == '__main__':
-    limit = 1_000_000
-    wordings, maxWidth1 = ["Science", "is", "what", "we", "understand", "well", "enough", "to", "explain", "to", "a",
-                           "computer.",
-                           "Art", "is", "everything", "else", "we", "do"], 20
-    Words2, maxWidth2 = ["This", "is", "an", "example", "of", "text", "justification."], 16
-    my_list = ['apple', 'banana', 'cherry', 'date']
-    heights = [1, 0, 0, 0, 0, 0, 0, 0, 0, 1]
-# print(check_smaller_number_exists(heights))
-print(fullJustify(Words2, maxWidth2))
+    x = ModScope(sum([7, 3, 6]))
+    y = ModScope(3)
+    print(x % y)
