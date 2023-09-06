@@ -1,6 +1,7 @@
 # Strong knowledge of Amazon Web Services, particularly Elastic
 # Beanstalk, EC2, RDS, SQS, S3, Codecommit, CodePipeline, and CodeDeploy
 from collections import OrderedDict
+from collections import defaultdict
 
 
 def do_something(skit, log, *low, gos=None, **pois):
@@ -12,7 +13,7 @@ def unique_names(names1: [], names2: []):
     return list(set(names1 + names2))
 
 
-def sort_csv_columns(csv_data: str) -> str:
+def sort_csv_columns(csv_data: str):
     rows = csv_data.split('\n')
     columns = rows[0].split(',')
     data = [[] for i in range(len(columns))]
@@ -59,52 +60,6 @@ def has_duplicates_in_second_column(two_d_list):
     has_duplicates = any(count > 1 for count in value_counts.values())
 
     return has_duplicates
-
-
-# Justify Words, Words justification
-def fullJustify(words: list[str], maxWidth: int) -> list[str]:
-    ListOfSentences, difference, i = [], 0, 0
-    ans = answer = []
-    temp = []
-    while i < len(words):
-        if len(temp) == 0 and i < len(words) - 1:
-            temp.append(words[i])
-            i += 1
-            continue
-        if len(temp) == 0 and i == len(words) - 1:
-            temp.append(words[i])
-            ListOfSentences.append(temp[:])
-            temp.clear()
-            break
-        if len(temp) > 0 and len(" ".join(temp) + " " + words[i]) <= maxWidth:
-            s = " ".join(temp) + " " + words[i]
-            temp.clear()
-            temp.append(s)
-            i += 1
-            continue
-        if len(temp) > 0 and len(" ".join(temp) + " " + words[i]) > maxWidth:
-            ListOfSentences.append(temp[:])
-            temp.clear()
-            continue
-    # Append any remaining words in temp as the last sentence
-
-    # Loop through each appended sentence
-    for sentence in ListOfSentences:
-        difference = maxWidth - len(sentence)
-        if difference > 0:
-            while difference > 0:
-                x = sentence.split(" ")
-                sentence = [" ".join(x[:-1]) + " " + x[-1]]
-                difference -= len(sentence)
-
-            # sentence = [e + " " if sentence.index(e) < len(sentence) - 1 and maxWidth - len(sentence) > 0 else e for
-            #             e in sentence]
-
-        # reduce each sentence list in List-ofSentences to strings
-    answer = [sentence for sublist in ans for sentence in sublist]
-    dump = " ".join(answer)
-    answer.append(dump)
-    return answer
 
 
 # Rain Water Collection Problem
@@ -159,7 +114,7 @@ def trap(height: list[int]) -> int:
             if wall == 1 and e > 0:
                 result += temp
                 temp = 0
-        # move to the next level by clearing out the ground floor
+        # move to the next level by clearing out the first floor
         height = [a - 1 if a > 0 else 0 for a in height]
     return result
 
@@ -208,6 +163,11 @@ def rotate(s1, s2):
 
 
 class ModScope:  # a.copy()
+    """
+    Example : x = ModScope(sum([7, 3, 6]))
+    y = ModScope(3)
+    """
+
     def __init__(self, num):
         self.num = num
 
@@ -215,7 +175,7 @@ class ModScope:  # a.copy()
         return self.num % other.num
 
 
-def maxShared(friendsNodes, friendsFrom, friendsTo, friendsWeight):
+def maxShared(friendsNodes: int, friendsFrom, friendsTo, friendsWeight):
     """
         Finds the maximum number of friends shared by any two people.
 
@@ -228,32 +188,18 @@ def maxShared(friendsNodes, friendsFrom, friendsTo, friendsWeight):
         Returns:
           The maximum number of friends shared by any two people.
         """
-
-    # Create a dictionary to store the number of times each pair of friends have been shared.
-    friendsShared = {}
-    for i in range(friendsNodes):
-        for j in range(i + 1, friendsNodes):
-            friendsShared[(i, j)] = 0
-
-    # Iterate over all the friendships and increment the count for the pair of friends involved.
+    friendsShared = defaultdict(int)
     for i in range(len(friendsFrom)):
-        friendsShared[(friendsFrom[i], friendsTo[i])] += 1
-
-    # Find the maximum number of friends shared by any two people.
+        check = (friendsFrom[i], friendsTo[i])
+        friendsShared[check] += 1
     maxFriendsShared = max(friendsShared.values())
-
-    # Find all the pairs of friends that have the maximum number of friends shared.
-    pairsWithMaxFriendsShared = []
-    for key, value in friendsShared.items():
-        if value == maxFriendsShared:
-            pairsWithMaxFriendsShared.append(key)
-    if len(pairsWithMaxFriendsShared) > 1:
-        return sum([friendsWeight[i] for i, j in pairsWithMaxFriendsShared])
-    else:
-        return friendsWeight[pairsWithMaxFriendsShared[0][0]]
+    KeysWithMaxValues = dict(filter(lambda item: item[1] == maxFriendsShared, friendsShared.items()))
+    pairsWithMaxFriendsShared = [key[0] * key[1] for key, value in KeysWithMaxValues.items()]
+    return sum([i for i in pairsWithMaxFriendsShared if i == max(pairsWithMaxFriendsShared)])
 
 
 if __name__ == '__main__':
-    x = ModScope(sum([7, 3, 6]))
-    y = ModScope(3)
-    print(x % y)
+    arr1 = [1, 1, 2, 2, 2]
+    arr2 = [2, 2, 3, 3, 4]
+    weight = [2, 4, 4, 5, 6]
+    print(maxShared(4, arr1, arr2, weight))
