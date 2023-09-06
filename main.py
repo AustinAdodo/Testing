@@ -207,12 +207,50 @@ def rotate(s1, s2):
     return False
 
 
-class ModScope:
+class ModScope:  # a.copy()
     def __init__(self, num):
         self.num = num
 
     def __mod__(self, other):
         return self.num % other.num
+
+
+def maxShared(friendsNodes, friendsFrom, friendsTo, friendsWeight):
+    """
+        Finds the maximum number of friends shared by any two people.
+
+        Args:
+          friendsNodes: The number of friends.
+          friendsFrom: A list of integers representing the starting nodes of the friendships.
+          friendsTo: A list of integers representing the ending nodes of the friendships.
+          friendsWeight: A list of integers representing the weights of the friendships.
+
+        Returns:
+          The maximum number of friends shared by any two people.
+        """
+
+    # Create a dictionary to store the number of times each pair of friends have been shared.
+    friendsShared = {}
+    for i in range(friendsNodes):
+        for j in range(i + 1, friendsNodes):
+            friendsShared[(i, j)] = 0
+
+    # Iterate over all the friendships and increment the count for the pair of friends involved.
+    for i in range(len(friendsFrom)):
+        friendsShared[(friendsFrom[i], friendsTo[i])] += 1
+
+    # Find the maximum number of friends shared by any two people.
+    maxFriendsShared = max(friendsShared.values())
+
+    # Find all the pairs of friends that have the maximum number of friends shared.
+    pairsWithMaxFriendsShared = []
+    for key, value in friendsShared.items():
+        if value == maxFriendsShared:
+            pairsWithMaxFriendsShared.append(key)
+    if len(pairsWithMaxFriendsShared) > 1:
+        return sum([friendsWeight[i] for i, j in pairsWithMaxFriendsShared])
+    else:
+        return friendsWeight[pairsWithMaxFriendsShared[0][0]]
 
 
 if __name__ == '__main__':
