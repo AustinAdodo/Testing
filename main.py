@@ -175,7 +175,7 @@ class ModScope:  # a.copy()
         return self.num % other.num
 
 
-def maxShared(friendsNodes: int, friendsFrom, friendsTo, friendsWeight):
+def maxShared(friendsNodes: int, friendsFrom: [], friendsTo: [], friendsWeight: []):
     """
         Finds the maximum number of friends shared by any two people.
 
@@ -186,7 +186,7 @@ def maxShared(friendsNodes: int, friendsFrom, friendsTo, friendsWeight):
           friendsWeight: A list of integers representing the weights of the friendships.
 
         Returns:
-          The maximum number of friends shared by any two people.
+          The maximum number of friends shared by any two people (int).
         """
     friendsShared = defaultdict(int)
     for i in range(len(friendsFrom)):
