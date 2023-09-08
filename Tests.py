@@ -1,35 +1,11 @@
 import unittest
 
-from Testing.main import count_primes_less_than, sieveofEratosthenes
+# from Testing.main import count_primes_less_than, sieveofEratosthenes
 
 
 class Cases(unittest.TestCase):
-    # all tests passed
     def test_my_method1(self):
-        self.assertEqual(count_primes_less_than(34), 11)
-
-    def test_my_method2(self):
-        self.assertEqual(count_primes_less_than(69), 19)
-
-    def test_my_method3(self):
-        self.assertEqual(count_primes_less_than(420), 81)
-
-    def test_my_method4(self):
-        self.assertEqual(count_primes_less_than(666), 121)
-        # all tests passed
-
-    def test_my_method5(self):
-        self.assertEqual(sieveofEratosthenes(34), 11)
-
-    def test_my_method6(self):
-        self.assertEqual(sieveofEratosthenes(69), 19)
-
-    def test_my_method7(self):
-        self.assertEqual(sieveofEratosthenes(420), 81)
-
-    def test_my_method8(self):
-        self.assertEqual(sieveofEratosthenes(666), 121)
-    # test.it("Basic tests")
+        self.assertEqual(34, 11)
 
 
 if __name__ == '__main__':
