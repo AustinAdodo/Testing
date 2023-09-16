@@ -202,8 +202,43 @@ def maxShared(friendsNodes: int, friendsFrom: [], friendsTo: [], friendsWeight: 
     return sum([i for i in pairsWithMaxFriendsShared if i == max(pairsWithMaxFriendsShared)])
 
 
+def group_sort_characters(word):
+    # Sort the characters in the word by ASCII value
+    sorted_word = sorted(word)
+
+    # Initialize variables to track the current character and its count
+    current_char = sorted_word[0]
+    char_count = 1
+
+    # Iterate through the sorted characters and group them by ASCII value
+    for char in sorted_word[1:]:
+        if char == current_char:
+            char_count += 1
+        else:
+            # Print the character and its count on a new line
+            print(current_char)
+            print(char * char_count)
+            current_char = char
+            char_count = 1
+
+    # Print the last character and its count
+    # print(current_char)
+    print(f"{current_char * char_count}\n")
+
+
+# result = all(numbers[i] >= numbers[i - 1] for i in range(1, len(numbers)))
+
+def group_sort_characters2(word):
+    chrs = [str(i) for i in word]
+    chr2 = list(set(chrs))
+    chr2_sorted = sorted(chr2, key=lambda x: ord(x))
+    counts = [chrs.count(i) for i in chr2_sorted]
+    for i in chr2_sorted:
+        print(f"{i * counts[chr2_sorted.index(i)]}")
+
+
 if __name__ == '__main__':
-    arr1 = [1, 1, 2, 2, 2]
-    arr2 = [2, 2, 3, 3, 4]
-    weight = [2, 4, 4, 5, 6]
-    print(maxShared(4, arr1, arr2, weight))
+    # arr1 = [1, 1, 2, 2, 2]
+    # arr2 = [2, 2, 3, 3, 4]
+    # weight = [2, 4, 4, 5, 6]
+    print(group_sort_characters2("Banana"))
