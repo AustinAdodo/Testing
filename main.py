@@ -220,6 +220,22 @@ def group_sort_characters2(word):
         print(f"{i * counts[chr2_sorted.index(i)]}")
 
 
+# Involves reverse. significant use
+def decryptMessage(encryptedMessage: str):  # ans[::-1]
+    ans = ""
+    i = 0
+    while i < len(encryptedMessage):
+        if i + 1 < len(encryptedMessage) and encryptedMessage[i + 1].isdigit():
+            repeat_count = int(encryptedMessage[i + 1])
+            ans += encryptedMessage[i] * repeat_count
+            i += 2
+        else:
+            ans += encryptedMessage[i]
+            i += 1
+    result = [str(i) for i in ans.split(" ")]
+    return " ".join(result[::-1])
+
+
 if __name__ == '__main__':
-    # print(group_sort_characters2("Banana"))
-    test(123)
+    a = "seaside the to sent be to ne2ds army ten of team a"
+    print(decryptMessage(a))
